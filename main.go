@@ -25,7 +25,7 @@ var people []person
 func createPerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	newID := ps.ByName("id")
 	var newPerson person
-	_ = json.NewDecoder(r.Body).Decode(&newPerson)
+	json.NewDecoder(r.Body).Decode(&newPerson)
 	newPerson.ID = string(newID)
 	people = append(people, newPerson)
 	json.NewEncoder(w).Encode(people)
