@@ -23,6 +23,9 @@ type address struct {
 
 var people []person
 
+// ****************** //
+// ****GET METHOD**** //
+// ****************** //
 func homePage(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
 	welcomeMessage := `
 		<div style="display:grid;height:75vh">
@@ -47,6 +50,9 @@ func getPerson(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 	fmt.Fprintf(w, "<h1>No DATA</h1>")
 }
 
+// ******************* //
+// ****POST METHOD**** //
+// ******************* //
 func createPerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	newID := ps.ByName("id")
 	var newPerson person
@@ -56,6 +62,9 @@ func createPerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 	json.NewEncoder(w).Encode(people)
 }
 
+// ********************* //
+// ****DELETE METHOD**** //
+// ********************* //
 func deletePerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	personID := ps.ByName("id")
 	found := false
@@ -73,6 +82,9 @@ func deletePerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 	json.NewEncoder(w).Encode(people)
 }
 
+// ****************** //
+// ****PUT METHOD**** //
+// ****************** //
 func updatePerson(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	personID := ps.ByName("id")
 	found := false
